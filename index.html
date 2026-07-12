@@ -149,6 +149,7 @@
       width: 100%;
       max-width: 400px;
       margin: 1.5em auto 0;
+      text-align: center;
       opacity: 0;
       transform: translateY(12px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -164,18 +165,24 @@
     }
 
     .vsl__cta a {
-      display: block;
-      width: 100%;
+      display: inline-block;
+      width: 70%;                   /* mobile: 70% de largura */
       text-align: center;
       text-decoration: none;
-      background: #16a34a;
+      /* marrom escuro em gradiente horizontal */
+      background: linear-gradient(90deg, #2b1810 0%, #5c3a22 100%);
       color: #ffffff;
       font-size: 1.15rem;
       font-weight: 700;
       padding: 1em 1.25em;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+      border-radius: 999px;         /* totalmente arredondado (pill) */
+      box-shadow: 0 8px 24px rgba(43, 24, 16, 0.4);
       animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    /* desktop: um pouco menor que o vídeo */
+    @media (min-width: 480px) {
+      .vsl__cta a { width: 90%; }
     }
 
     @keyframes pulse {
