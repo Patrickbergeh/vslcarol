@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Pixel / rastreamento -->
-  <script src="https://tqqqnmdffmzolnlrggqd.supabase.co/functions/v1/loader?id=c9c4f320-4289-4785-bc02-360f393fb0a7"></script>
+  <!-- Pixel / rastreamento (async: não bloqueia a renderização) -->
+  <script async src="https://tqqqnmdffmzolnlrggqd.supabase.co/functions/v1/loader?id=c9c4f320-4289-4785-bc02-360f393fb0a7"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VSL Carol</title>
@@ -14,6 +14,10 @@
   <link rel="preload" href="https://scripts.converteai.net/06de75fb-4e77-4d24-a891-be4f8f6aef70/players/6a510cd75480813d4da2e402/v4/player.js" as="script">
   <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
   <link rel="preload" href="https://cdn.converteai.net/06de75fb-4e77-4d24-a891-be4f8f6aef70/6a510bb880c1743fb7d8133b/main.m3u8" as="fetch">
+  <!-- preconnect: abre a conexão (TLS) antes, acelera o início do vídeo no mobile -->
+  <link rel="preconnect" href="https://scripts.converteai.net">
+  <link rel="preconnect" href="https://cdn.converteai.net">
+  <!-- dns-prefetch como fallback p/ navegadores sem preconnect -->
   <link rel="dns-prefetch" href="https://cdn.converteai.net">
   <link rel="dns-prefetch" href="https://scripts.converteai.net">
   <link rel="dns-prefetch" href="https://images.converteai.net">
