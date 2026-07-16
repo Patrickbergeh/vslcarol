@@ -193,7 +193,7 @@
     }
 
     /* ============================================================
-       PÁGINA DE OFERTA — revelada junto com o botão do delay
+       PÁGINA DE OFERTA, revelada junto com o botão do delay
        Visual claro (branco + cinza bem claro), Instrument Sans
        ============================================================ */
     .offer {
@@ -228,12 +228,12 @@
       margin-bottom: 1.1em;
     }
     .offer h2 {
-      font-weight: 700;
-      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
-      line-height: 1.2;
+      font-weight: 500;     /* Medium */
+      font-size: clamp(1.45rem, 3.8vw, 2.05rem);
+      line-height: 1.25;
       letter-spacing: -0.01em;
       margin-bottom: 0.55em;
-      text-wrap: balance;   /* distribui o texto em linhas equilibradas */
+      text-wrap: balance;   /* distribui o texto em 2 linhas equilibradas */
     }
     .offer h2 .hl { color: inherit; }
     .offer .lead {
@@ -424,8 +424,7 @@
     /* ---- Seção: Garantia ---- */
     .guarantee { display: flex; gap: 1.6em; align-items: flex-start; margin-top: 2em; text-align: left; }
     .guarantee__badge {
-      flex: 0 0 auto; width: 120px; line-height: 0;
-      filter: drop-shadow(0 12px 22px rgba(74, 47, 28, 0.28));
+      flex: 0 0 auto; width: 180px; line-height: 0;
     }
     .guarantee__badge svg { display: block; width: 100%; height: auto; }
     .guarantee p { color: #475569; line-height: 1.65; margin-top: 0.7em; }
@@ -457,8 +456,8 @@
       .author__photo { max-width: 320px; }
     }
     @media (max-width: 620px) {
-      .check-item { flex-basis: 100%; min-height: 0; }  /* mobile: fila única vertical */
-      .offer h2 { font-size: 1.45rem; }                 /* títulos mais compactos (menos linhas) */
+      .check-item { flex-basis: 100%; min-height: 96px; }  /* mobile: fila única, cards mais altos */
+      .offer h2 { font-size: 1.4rem; }                     /* títulos mais compactos (menos linhas) */
       .guarantee { flex-direction: column; align-items: center; text-align: center; }
       .value-row { flex-wrap: wrap; }
     }
@@ -494,7 +493,7 @@
   </main>
 
   <!-- ============================================================
-       PÁGINA DE OFERTA — aparece junto com o botão do delay (10min)
+       PÁGINA DE OFERTA, aparece junto com o botão do delay (10min)
        ============================================================ -->
   <div class="offer" id="offer">
 
@@ -509,7 +508,7 @@
 
     <!-- O que você vai aprender -->
     <section class="section section--center">
-      <div class="container container--narrow">
+      <div class="container">
         <h2>O que você vai <span class="hl">aprender</span> nesse treinamento</h2>
         <div class="learn-grid">
           <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como estruturar a sua mentoria do início ao fim.</div>
@@ -561,7 +560,7 @@
     <section class="section section--center">
       <div class="container">
         <h2>O plano prático para construir sua <span class="hl">metodologia única</span> em 4 semanas</h2>
-        <p class="lead">Cada semana tem um objetivo claro. Você avança uma etapa por vez — sem acumular, sem se sobrecarregar e sem pular etapas. No final das 4 semanas, sua mentoria está estruturada, organizada e pronta para vender.</p>
+        <p class="lead">Cada semana tem um objetivo claro. Você avança uma etapa por vez, sem acumular, sem se sobrecarregar e sem pular etapas. No final das 4 semanas, sua mentoria está estruturada, organizada e pronta para vender.</p>
 
         <div class="modules">
           <article class="module">
@@ -572,7 +571,7 @@
             <h3>Clareza do que você realmente ensina</h3>
             <p>Hoje está tudo solto na sua cabeça. Você sabe muito, mas não sabe por onde começar a organizar. Cada vez que tenta explicar o que faz, sai diferente. Cada encontro parece começar do zero.</p>
             <p>Neste módulo, você identifica o núcleo real da sua transformação. Separa o que é essencial do que é excesso. E ganha algo que a maioria das mentoras nunca teve: foco. Você deixa de tentar ensinar tudo e começa a estruturar com intenção.</p>
-            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 1:</strong> Você sabe exatamente o que sustenta sua mentoria — e o que pode ser eliminado sem perder valor.</span></div>
+            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 1:</strong> Você sabe exatamente o que sustenta sua mentoria, e o que pode ser eliminado sem perder valor.</span></div>
           </article>
 
           <article class="module">
@@ -580,10 +579,10 @@
               <span class="module__week">SEMANA 2</span>
               <span class="module__mod"><svg class="i"><use href="#i-module"/></svg>MÓDULO 2</span>
             </div>
-            <h3>Arquitetura da sua metodologia única — do mapa à prática</h3>
+            <h3>Arquitetura da sua metodologia única, do mapa à prática</h3>
             <p>Agora que você tem clareza do que ensina, é hora de dar forma a isso. Neste módulo, você transforma ideias dispersas em etapas claras e organiza tudo com lógica e identidade própria.</p>
-            <p>Mas não para no desenho. Você já transforma essa metodologia em encontros reais. Sua mentoria sai do papel e ganha estrutura prática que pode ser aplicada em grupo — estruturada, replicável e conduzível com segurança.</p>
-            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 2:</strong> Sua metodologia está desenhada E seus encontros estão estruturados — prontos para serem aplicados com clareza e segurança.</span></div>
+            <p>Mas não para no desenho. Você já transforma essa metodologia em encontros reais. Sua mentoria sai do papel e ganha estrutura prática que pode ser aplicada em grupo, estruturada, replicável e conduzível com segurança.</p>
+            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 2:</strong> Sua metodologia está desenhada E seus encontros estão estruturados, prontos para serem aplicados com clareza e segurança.</span></div>
           </article>
 
           <article class="module">
@@ -592,9 +591,9 @@
               <span class="module__mod"><svg class="i"><use href="#i-module"/></svg>MÓDULO 3</span>
             </div>
             <h3>Organização para escala (sem sobrecarga)</h3>
-            <p>A maioria das mentoras que cresce, se afoga. Porque escalar sem organização é multiplicar o caos. Mais alunas, mais demandas, mais mensagens, mais cobranças — e a mesma você tentando segurar tudo.</p>
+            <p>A maioria das mentoras que cresce, se afoga. Porque escalar sem organização é multiplicar o caos. Mais alunas, mais demandas, mais mensagens, mais cobranças, e a mesma você tentando segurar tudo.</p>
             <p>Neste módulo, você define limites, organiza demandas e estrutura sua mentoria para funcionar em grupo sem que tudo dependa exclusivamente de você. Você aprende a crescer sem trabalhar mais horas.</p>
-            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 3:</strong> Você sente segurança para escalar — porque a base sustenta o crescimento sem depender só da sua energia.</span></div>
+            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 3:</strong> Você sente segurança para escalar, porque a base sustenta o crescimento sem depender só da sua energia.</span></div>
           </article>
 
           <article class="module">
@@ -603,8 +602,8 @@
               <span class="module__mod"><svg class="i"><use href="#i-module"/></svg>MÓDULO 4</span>
             </div>
             <h3>Sua metodologia como oferta de alto ticket</h3>
-            <p>Uma mentoria que ninguém entende é uma mentoria que ninguém compra. Não importa quão boa ela seja por dentro — se na hora de apresentar você trava, enrola ou não consegue explicar com clareza, a venda não acontece.</p>
-            <p>Neste módulo, você organiza promessa, público e transformação com clareza. Sua mentoria deixa de ser 'difícil de explicar' e se torna uma oferta que comunica valor em poucas palavras — uma oferta que você pode cobrar tranquilamente de 2 a 10 mil reais.</p>
+            <p>Uma mentoria que ninguém entende é uma mentoria que ninguém compra. Não importa quão boa ela seja por dentro, se na hora de apresentar você trava, enrola ou não consegue explicar com clareza, a venda não acontece.</p>
+            <p>Neste módulo, você organiza promessa, público e transformação com clareza. Sua mentoria deixa de ser 'difícil de explicar' e se torna uma oferta que comunica valor em poucas palavras, uma oferta que você pode cobrar tranquilamente de 2 a 10 mil reais.</p>
             <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 4:</strong> Você sabe exatamente como apresentar, explicar e posicionar sua mentoria como uma oferta de alto valor.</span></div>
           </article>
         </div>
@@ -621,7 +620,7 @@
           <div class="bonus">
             <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Onboarding de Alunas</h3>
-            <p>Fechar a venda é só o começo — o problema é o que vem depois. Aqui você recebe um processo pronto pra saber exatamente o que fazer quando uma nova cliente entrar: como acolher e preparar ela pro acompanhamento. Quando o começo é organizado, a aluna entra confiante — e isso muda o resultado lá no fim.</p>
+            <p>Fechar a venda é só o começo, o problema é o que vem depois. Aqui você recebe um processo pronto pra saber exatamente o que fazer quando uma nova cliente entrar: como acolher e preparar ela pro acompanhamento. Quando o começo é organizado, a aluna entra confiante, e isso muda o resultado lá no fim.</p>
           </div>
           <div class="bonus">
             <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
@@ -631,7 +630,7 @@
           <div class="bonus">
             <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Modelo de Contrato</h3>
-            <p>Muitas mentoras conduzem programas de milhares de reais sem nenhum contrato — e só percebem o problema quando aparece um desentendimento. Aqui você recebe um contrato de mentoria pronto pra adaptar ao seu contexto. Protege você, protege sua aluna, e deixa tudo combinado antes de começar.</p>
+            <p>Muitas mentoras conduzem programas de milhares de reais sem nenhum contrato, e só percebem o problema quando aparece um desentendimento. Aqui você recebe um contrato de mentoria pronto pra adaptar ao seu contexto. Protege você, protege sua aluna, e deixa tudo combinado antes de começar.</p>
           </div>
           <div class="bonus">
             <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
@@ -641,7 +640,7 @@
           <div class="bonus">
             <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Workshop: Apresentação de Mentoria de Alta Conversão</h3>
-            <p>Você pode ter a mentoria mais bem estruturada do mundo e ainda travar na hora de apresentar — e é aí que a maioria perde a venda. Aqui você recebe o script completo que eu uso, da condução ao fechamento: o que falar em cada momento e como conduzir pra que a venda aconteça naturalmente.</p>
+            <p>Você pode ter a mentoria mais bem estruturada do mundo e ainda travar na hora de apresentar, e é aí que a maioria perde a venda. Aqui você recebe o script completo que eu uso, da condução ao fechamento: o que falar em cada momento e como conduzir pra que a venda aconteça naturalmente.</p>
           </div>
         </div>
       </div>
@@ -679,7 +678,7 @@
       <div class="container container--narrow">
         <div class="special">
           <h2>Análise gratuita da sua mentoria com o nosso time</h2>
-          <p>Ao se inscrever, você tem 30 dias para estruturar sua mentoria seguindo o método — e no fim desse período, pode solicitar uma <strong>análise gratuita com o nosso time</strong>. A gente senta com você, olha tudo que você construiu, e analisa a estrutura completa da sua mentoria — apontando o que já está pronto para vender e o que ainda precisa de ajuste.</p>
+          <p>Ao se inscrever, você tem 30 dias para estruturar sua mentoria seguindo o método, e no fim desse período, pode solicitar uma <strong>análise gratuita com o nosso time</strong>. A gente senta com você, olha tudo que você construiu, e analisa a estrutura completa da sua mentoria, apontando o que já está pronto para vender e o que ainda precisa de ajuste.</p>
           <p>Esse é exatamente o tipo de serviço que a gente cobra na nossa empresa. Mas pra quem entra pelo treinamento, é gratuito.</p>
         </div>
       </div>
@@ -710,7 +709,7 @@
           <div>
             <p>Mãe, esposa, empresária e especialista em vendas de alto ticket, já tive mais de 20 mil alunas ao redor do mundo e mais de 500 mentoradas. Uma viciada em vender e crescer negócios com propósito.</p>
             <p>Eu sei exatamente como é saber muito e não conseguir organizar isso em algo claro. Eu já preparei encontros em cima da hora, já saí de mentorias sentindo que poderia ter sido melhor, já tive dificuldade de explicar o que eu fazia.</p>
-            <p>Até que eu entendi: o problema não era falta de conhecimento. Era falta de método. Quando eu organizei o que já sabia em uma metodologia clara, tudo mudou — a forma como eu conduzia, como eu vendia, como as alunas percebiam o valor.</p>
+            <p>Até que eu entendi: o problema não era falta de conhecimento. Era falta de método. Quando eu organizei o que já sabia em uma metodologia clara, tudo mudou, a forma como eu conduzia, como eu vendia, como as alunas percebiam o valor.</p>
             <p>A Metodologia Única nasceu desse processo. Não é teoria. É o mesmo caminho que eu percorri e que já ajudou mais de 500 mentoras a estruturar suas mentorias com clareza e segurança.</p>
           </div>
         </div>
