@@ -193,6 +193,261 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.03); }
     }
+
+    /* ============================================================
+       PÁGINA DE OFERTA — revelada junto com o botão do delay
+       Visual claro (branco + cinza bem claro), Instrument Sans
+       ============================================================ */
+    .offer {
+      display: none;               /* começa escondido, aparece com o botão */
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+    }
+    .offer.is-visible { display: block; }
+    .offer.is-shown { opacity: 1; }
+
+    /* container central: desktop dentro de 1280px, mobile com 2em nas laterais */
+    .offer .section { padding: clamp(3em, 6vw, 5em) 2em; }
+    .offer .section--alt { background: #f6f7f8; }        /* cinza bem claro alternado */
+    .offer .section--center { text-align: center; }
+    .offer .container { max-width: 1280px; margin: 0 auto; }
+    .offer .container--narrow { max-width: 820px; }
+
+    .offer .eyebrow {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #16a34a;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 0.4em 0.9em;
+      border-radius: 999px;
+      margin-bottom: 1.1em;
+    }
+    .offer h2 {
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.55em;
+    }
+    .offer h2 .hl { color: #16a34a; }
+    .offer .lead {
+      font-weight: 400;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #475569;
+      max-width: 720px;
+    }
+    .offer .section--center .lead,
+    .offer .section--center .eyebrow { margin-left: auto; margin-right: auto; }
+
+    /* Botão de CTA reutilizável (mesmo verde do botão do delay) */
+    .btn-cta {
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      background: linear-gradient(90deg, #166534 0%, #22c55e 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      padding: 1em 2em;
+      border-radius: 999px;
+      box-shadow: 0 10px 26px rgba(22, 101, 52, 0.28);
+      animation: pulse 1.6s ease-in-out infinite;
+      max-width: 100%;
+    }
+
+    /* ---- Seção: O que você vai aprender (checklist) ---- */
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1em;
+      margin-top: 2.2em;
+      text-align: left;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75em;
+      background: #ffffff;
+      border: 1px solid #e6e8eb;
+      border-radius: 14px;
+      padding: 1em 1.1em;
+      font-size: 1rem;
+      line-height: 1.45;
+      color: #1f2937;
+      font-weight: 500;
+    }
+    .check-item .ic {
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #16a34a;
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+    }
+
+    /* ---- Seção: Depoimentos ---- */
+    .depo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25em;
+      margin-top: 2.2em;
+      text-align: left;
+    }
+    .depo {
+      background: #ffffff;
+      border: 1px solid #e6e8eb;
+      border-radius: 20px;
+      padding: 1.5em;
+      box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 26px rgba(16, 24, 40, 0.04);
+    }
+    .depo__stars { color: #f59e0b; letter-spacing: 0.1em; margin-bottom: 0.7em; }
+    .depo__text { color: #475569; line-height: 1.6; font-size: 0.98rem; }
+    .depo__who { display: flex; align-items: center; gap: 0.75em; margin-top: 1.1em; }
+    .depo__ava {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(180deg, #166534, #22c55e);
+      color: #fff; font-weight: 700; display: grid; place-items: center;
+    }
+    .depo__name { font-weight: 600; color: #0f172a; }
+    .depo__role { font-size: 0.85rem; color: #94a3b8; }
+
+    /* ---- Seção: 4 Semanas (módulos) ---- */
+    .modules { display: grid; gap: 1.25em; margin-top: 2.2em; text-align: left; }
+    .module {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid #e6e8eb;
+      border-radius: 20px;
+      padding: 1.7em 1.7em 1.7em 1.9em;
+      overflow: hidden;
+    }
+    .module::before {
+      content: "";
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, #166534, #22c55e);
+    }
+    .module__head { display: flex; align-items: center; gap: 0.7em; flex-wrap: wrap; margin-bottom: 0.7em; }
+    .module__week {
+      font-weight: 700; font-size: 0.75rem; letter-spacing: 0.06em;
+      color: #166534; background: #f0fdf4; border: 1px solid #bbf7d0;
+      padding: 0.35em 0.8em; border-radius: 999px;
+    }
+    .module__mod { font-weight: 600; font-size: 0.85rem; color: #16a34a; }
+    .module h3 { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.55em; line-height: 1.25; }
+    .module p { color: #475569; line-height: 1.65; margin-bottom: 0.9em; }
+    .module p:last-of-type { margin-bottom: 1.1em; }
+    .result {
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;
+      padding: 0.9em 1.1em; color: #166534; line-height: 1.55; font-weight: 500;
+    }
+    .result strong { font-weight: 700; }
+
+    /* ---- Seção: Bônus / ferramentas ---- */
+    .bonus-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25em;
+      margin-top: 2.2em; text-align: left;
+    }
+    .bonus { background: #ffffff; border: 1px solid #e6e8eb; border-radius: 20px; padding: 1.6em; }
+    .bonus__tag {
+      display: inline-flex; align-items: center; gap: 0.4em;
+      font-weight: 700; font-size: 0.78rem; color: #16a34a;
+      background: #f0fdf4; border: 1px solid #bbf7d0;
+      padding: 0.35em 0.75em; border-radius: 999px; margin-bottom: 0.9em;
+    }
+    .bonus h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5em; line-height: 1.3; }
+    .bonus p { color: #475569; line-height: 1.6; font-size: 0.95rem; }
+
+    /* ---- Seção: Preço (value stack) ---- */
+    .value-list {
+      background: #ffffff; border: 1px solid #e6e8eb; border-radius: 20px;
+      overflow: hidden; margin-top: 2.2em; text-align: left;
+    }
+    .value-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 1em;
+      padding: 1em 1.4em; border-bottom: 1px solid #eef0f2;
+    }
+    .value-row:last-child { border-bottom: 0; }
+    .value-row .name { color: #1f2937; font-weight: 500; }
+    .value-row .price { color: #64748b; font-weight: 600; white-space: nowrap; }
+    .value-row--total { background: #f6f7f8; }
+    .value-row--total .name { font-weight: 700; color: #0f172a; }
+    .value-row--total .price { color: #94a3b8; text-decoration: line-through; font-weight: 700; }
+    .price-box {
+      margin-top: 1.5em; text-align: center;
+      background: linear-gradient(180deg, #ffffff, #f0fdf4);
+      border: 1px solid #bbf7d0; border-radius: 24px; padding: 2.2em 1.5em;
+    }
+    .price-box .small { color: #475569; font-weight: 500; }
+    .price-box .big {
+      font-weight: 700; font-size: clamp(2rem, 7vw, 2.9rem);
+      color: #166534; letter-spacing: -0.02em; margin: 0.1em 0 0.05em;
+    }
+    .price-box .cash { color: #475569; font-weight: 500; margin-bottom: 1.3em; }
+
+    /* ---- Seção: Bônus especial (destaque) ---- */
+    .special {
+      background: linear-gradient(180deg, #ffffff, #f0fdf4);
+      border: 1px solid #bbf7d0; border-radius: 24px;
+      padding: 2em; text-align: left;
+    }
+    .special p { color: #475569; line-height: 1.65; margin-top: 0.8em; }
+    .special strong { color: #166534; font-weight: 700; }
+
+    /* ---- Seção: Garantia ---- */
+    .guarantee { display: flex; gap: 1.6em; align-items: flex-start; margin-top: 2em; text-align: left; }
+    .guarantee__badge {
+      flex: 0 0 auto; width: 104px; height: 104px; border-radius: 50%;
+      background: linear-gradient(180deg, #166534, #22c55e); color: #fff;
+      display: grid; place-items: center; text-align: center; line-height: 1.1;
+      font-weight: 700; box-shadow: 0 10px 26px rgba(22, 101, 52, 0.28);
+    }
+    .guarantee__badge b { display: block; font-size: 1.7rem; }
+    .guarantee__badge span { font-size: 0.72rem; letter-spacing: 0.04em; }
+    .guarantee p { color: #475569; line-height: 1.65; margin-top: 0.7em; }
+
+    /* ---- Seção: Autora ---- */
+    .author { display: grid; grid-template-columns: 300px 1fr; gap: 2.2em; align-items: start; margin-top: 2em; text-align: left; }
+    .author__photo {
+      aspect-ratio: 3 / 4; border-radius: 20px; background: #e9edf1;
+      display: grid; place-items: center; color: #94a3b8; font-weight: 600;
+      border: 1px solid #e6e8eb; text-align: center; padding: 1em;
+    }
+    .author p { color: #475569; line-height: 1.7; margin-bottom: 0.9em; }
+    .author p:last-child { margin-bottom: 0; }
+
+    /* ---- Seção: Urgência final ---- */
+    .urgency-list { display: grid; gap: 0.8em; margin: 2em 0; text-align: left; }
+    .urgency-item {
+      display: flex; gap: 0.75em; align-items: flex-start;
+      background: #ffffff; border: 1px solid #e6e8eb; border-left: 4px solid #22c55e;
+      border-radius: 12px; padding: 1em 1.2em; color: #1f2937; line-height: 1.5; font-weight: 500;
+    }
+    .offer .closing { color: #475569; line-height: 1.7; max-width: 760px; margin: 0 auto 1.6em; }
+    .offer .closing strong { color: #0f172a; font-weight: 700; }
+
+    /* ---- Responsivo ---- */
+    @media (max-width: 900px) {
+      .depo-grid, .bonus-grid { grid-template-columns: 1fr; }
+      .author { grid-template-columns: 1fr; }
+      .author__photo { max-width: 320px; }
+    }
+    @media (max-width: 620px) {
+      .learn-grid { grid-template-columns: 1fr; }
+      .guarantee { flex-direction: column; align-items: center; text-align: center; }
+      .value-row { flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
@@ -224,6 +479,248 @@
     </div>
   </main>
 
+  <!-- ============================================================
+       PÁGINA DE OFERTA — aparece junto com o botão do delay (10min)
+       ============================================================ -->
+  <div class="offer" id="offer">
+
+    <!-- O que você vai aprender -->
+    <section class="section section--center">
+      <div class="container container--narrow">
+        <span class="eyebrow">O treinamento</span>
+        <h2>O que você vai <span class="hl">aprender</span> nesse treinamento</h2>
+        <div class="learn-grid">
+          <div class="check-item"><span class="ic">✓</span> Como estruturar a sua mentoria do início ao fim.</div>
+          <div class="check-item"><span class="ic">✓</span> Como estruturar sua mentoria fazendo que ela valha 10x mais.</div>
+          <div class="check-item"><span class="ic">✓</span> Como estruturar sua mentoria para aguentar escala no perpétuo.</div>
+          <div class="check-item"><span class="ic">✓</span> Como criar uma metodologia única que se diferencia dentro do seu mercado.</div>
+          <div class="check-item"><span class="ic">✓</span> Como organizar a entrega, formatos e pilares.</div>
+          <div class="check-item"><span class="ic">✓</span> Como explicar o que você vende de um jeito único e sexy.</div>
+          <div class="check-item"><span class="ic">✓</span> Como dar seus próprios nomes e significados.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="section section--alt section--center">
+      <div class="container">
+        <span class="eyebrow">Resultados reais</span>
+        <h2>Depoimentos</h2>
+        <!-- Substitua os textos, nomes e iniciais pelos depoimentos reais das alunas -->
+        <div class="depo-grid">
+          <div class="depo">
+            <div class="depo__stars">★★★★★</div>
+            <p class="depo__text">Finalmente consegui organizar tudo que eu sabia em uma metodologia clara. Minha mentoria ganhou outra cara.</p>
+            <div class="depo__who">
+              <div class="depo__ava">A</div>
+              <div><div class="depo__name">Aluna Metodologia Única</div><div class="depo__role">Mentora</div></div>
+            </div>
+          </div>
+          <div class="depo">
+            <div class="depo__stars">★★★★★</div>
+            <p class="depo__text">Parei de improvisar os encontros. Hoje conduzo com segurança e as alunas percebem o valor na hora.</p>
+            <div class="depo__who">
+              <div class="depo__ava">B</div>
+              <div><div class="depo__name">Aluna Metodologia Única</div><div class="depo__role">Mentora</div></div>
+            </div>
+          </div>
+          <div class="depo">
+            <div class="depo__stars">★★★★★</div>
+            <p class="depo__text">Consegui posicionar minha mentoria como alto ticket e vender com clareza, sem enrolar na hora de apresentar.</p>
+            <div class="depo__who">
+              <div class="depo__ava">C</div>
+              <div><div class="depo__name">Aluna Metodologia Única</div><div class="depo__role">Mentora</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plano de 4 semanas -->
+    <section class="section section--center">
+      <div class="container">
+        <span class="eyebrow">Passo a passo</span>
+        <h2>O plano prático para construir sua <span class="hl">metodologia única</span> em 4 semanas</h2>
+        <p class="lead">Cada semana tem um objetivo claro. Você avança uma etapa por vez — sem acumular, sem se sobrecarregar e sem pular etapas. No final das 4 semanas, sua mentoria está estruturada, organizada e pronta para vender.</p>
+
+        <div class="modules">
+          <article class="module">
+            <div class="module__head">
+              <span class="module__week">SEMANA 1</span>
+              <span class="module__mod">🔹 MÓDULO 1</span>
+            </div>
+            <h3>Clareza do que você realmente ensina</h3>
+            <p>Hoje está tudo solto na sua cabeça. Você sabe muito, mas não sabe por onde começar a organizar. Cada vez que tenta explicar o que faz, sai diferente. Cada encontro parece começar do zero.</p>
+            <p>Neste módulo, você identifica o núcleo real da sua transformação. Separa o que é essencial do que é excesso. E ganha algo que a maioria das mentoras nunca teve: foco. Você deixa de tentar ensinar tudo e começa a estruturar com intenção.</p>
+            <div class="result">🎯 <strong>Resultado da Semana 1:</strong> Você sabe exatamente o que sustenta sua mentoria — e o que pode ser eliminado sem perder valor.</div>
+          </article>
+
+          <article class="module">
+            <div class="module__head">
+              <span class="module__week">SEMANA 2</span>
+              <span class="module__mod">🔹 MÓDULO 2</span>
+            </div>
+            <h3>Arquitetura da sua metodologia única — do mapa à prática</h3>
+            <p>Agora que você tem clareza do que ensina, é hora de dar forma a isso. Neste módulo, você transforma ideias dispersas em etapas claras e organiza tudo com lógica e identidade própria.</p>
+            <p>Mas não para no desenho. Você já transforma essa metodologia em encontros reais. Sua mentoria sai do papel e ganha estrutura prática que pode ser aplicada em grupo — estruturada, replicável e conduzível com segurança.</p>
+            <div class="result">🎯 <strong>Resultado da Semana 2:</strong> Sua metodologia está desenhada E seus encontros estão estruturados — prontos para serem aplicados com clareza e segurança.</div>
+          </article>
+
+          <article class="module">
+            <div class="module__head">
+              <span class="module__week">SEMANA 3</span>
+              <span class="module__mod">🔹 MÓDULO 3</span>
+            </div>
+            <h3>Organização para escala (sem sobrecarga)</h3>
+            <p>A maioria das mentoras que cresce, se afoga. Porque escalar sem organização é multiplicar o caos. Mais alunas, mais demandas, mais mensagens, mais cobranças — e a mesma você tentando segurar tudo.</p>
+            <p>Neste módulo, você define limites, organiza demandas e estrutura sua mentoria para funcionar em grupo sem que tudo dependa exclusivamente de você. Você aprende a crescer sem trabalhar mais horas.</p>
+            <div class="result">🎯 <strong>Resultado da Semana 3:</strong> Você sente segurança para escalar — porque a base sustenta o crescimento sem depender só da sua energia.</div>
+          </article>
+
+          <article class="module">
+            <div class="module__head">
+              <span class="module__week">SEMANA 4</span>
+              <span class="module__mod">🔹 MÓDULO 4</span>
+            </div>
+            <h3>Sua metodologia como oferta de alto ticket</h3>
+            <p>Uma mentoria que ninguém entende é uma mentoria que ninguém compra. Não importa quão boa ela seja por dentro — se na hora de apresentar você trava, enrola ou não consegue explicar com clareza, a venda não acontece.</p>
+            <p>Neste módulo, você organiza promessa, público e transformação com clareza. Sua mentoria deixa de ser 'difícil de explicar' e se torna uma oferta que comunica valor em poucas palavras — uma oferta que você pode cobrar tranquilamente de 2 a 10 mil reais.</p>
+            <div class="result">🎯 <strong>Resultado da Semana 4:</strong> Você sabe exatamente como apresentar, explicar e posicionar sua mentoria como uma oferta de alto valor.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bônus / ferramentas -->
+    <section class="section section--alt section--center">
+      <div class="container">
+        <span class="eyebrow">Ferramentas inclusas</span>
+        <h2>Além da metodologia, você recebe ferramentas para aplicar tudo com mais <span class="hl">facilidade</span></h2>
+        <p class="lead">Além do método principal, você recebe as ferramentas para acelerar sua implementação e garantir que nada fique pelo caminho:</p>
+
+        <div class="bonus-grid">
+          <div class="bonus">
+            <span class="bonus__tag">🎁 BÔNUS</span>
+            <h3>Onboarding de Alunas</h3>
+            <p>Fechar a venda é só o começo — o problema é o que vem depois. Aqui você recebe um processo pronto pra saber exatamente o que fazer quando uma nova cliente entrar: como acolher e preparar ela pro acompanhamento. Quando o começo é organizado, a aluna entra confiante — e isso muda o resultado lá no fim.</p>
+          </div>
+          <div class="bonus">
+            <span class="bonus__tag">🎁 BÔNUS</span>
+            <h3>Manual da Aluna</h3>
+            <p>Mentoria sem regras claras vira uma enxurrada de dúvidas repetidas: pode remarcar? Onde acessa? Como funciona? Aqui você recebe um documento completo com as regras, formatos e acessos da sua mentoria, pronto pra adaptar. Elimina as dúvidas repetitivas e profissionaliza sua entrega desde o primeiro dia.</p>
+          </div>
+          <div class="bonus">
+            <span class="bonus__tag">🎁 BÔNUS</span>
+            <h3>Modelo de Contrato</h3>
+            <p>Muitas mentoras conduzem programas de milhares de reais sem nenhum contrato — e só percebem o problema quando aparece um desentendimento. Aqui você recebe um contrato de mentoria pronto pra adaptar ao seu contexto. Protege você, protege sua aluna, e deixa tudo combinado antes de começar.</p>
+          </div>
+          <div class="bonus">
+            <span class="bonus__tag">🎁 BÔNUS</span>
+            <h3>Template de Formulário de Aplicação</h3>
+            <p>Conversar com todo mundo que demonstra interesse é o jeito mais rápido de gastar sua energia com quem nunca vai comprar. Aqui você recebe um formulário de aplicação pronto pra adaptar ao seu nicho: as pessoas aplicam, você filtra quem é qualificado antes da conversa. Menos conversa perdida.</p>
+          </div>
+          <div class="bonus">
+            <span class="bonus__tag">🎁 BÔNUS</span>
+            <h3>Workshop: Apresentação de Mentoria de Alta Conversão</h3>
+            <p>Você pode ter a mentoria mais bem estruturada do mundo e ainda travar na hora de apresentar — e é aí que a maioria perde a venda. Aqui você recebe o script completo que eu uso, da condução ao fechamento: o que falar em cada momento e como conduzir pra que a venda aconteça naturalmente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preço / value stack -->
+    <section class="section section--center">
+      <div class="container container--narrow">
+        <span class="eyebrow">Oferta completa</span>
+        <h2>Tudo o que você recebe para estruturar, posicionar e <span class="hl">vender</span> sua mentoria com clareza</h2>
+        <p class="lead" style="margin-bottom:0;">Se você decidisse estruturar tudo isso separadamente, o investimento seria:</p>
+
+        <div class="value-list">
+          <div class="value-row"><span class="name">Mentoria completa para estruturar sua metodologia</span><span class="price">R$ 497</span></div>
+          <div class="value-row"><span class="name">Onboarding de alunas</span><span class="price">R$ 397</span></div>
+          <div class="value-row"><span class="name">Manual da Aluna</span><span class="price">R$ 197</span></div>
+          <div class="value-row"><span class="name">Modelo de contrato</span><span class="price">R$ 397</span></div>
+          <div class="value-row"><span class="name">Template de formulário de aplicação</span><span class="price">R$ 197</span></div>
+          <div class="value-row"><span class="name">Workshop: Apresentação de Mentoria de Alta Conversão</span><span class="price">R$ 297</span></div>
+          <div class="value-row value-row--total"><span class="name">Total separado</span><span class="price">R$ 1.982</span></div>
+        </div>
+
+        <p class="lead" style="margin:1.5em auto 0;">E ainda assim, você não teria tudo integrado em um único sistema, com a clareza e a progressão que você precisa.</p>
+
+        <div class="price-box">
+          <div class="small">Tudo isso por apenas</div>
+          <div class="big">12x de R$ 20,55</div>
+          <div class="cash">ou R$ 199,90 à vista</div>
+          <a class="btn-cta" href="https://payfast.greenn.com.br/45497/offer/Gf3z44?ch_id=13726">Quero garantir minha vaga e estruturar minha mentoria com segurança</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bônus especial (tempo limitado) -->
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <div class="special">
+          <span class="eyebrow">Bônus especial · tempo limitado</span>
+          <h2>Análise gratuita da sua mentoria com o nosso time</h2>
+          <p>Ao se inscrever, você tem 30 dias para estruturar sua mentoria seguindo o método — e no fim desse período, pode solicitar uma <strong>análise gratuita com o nosso time</strong>. A gente senta com você, olha tudo que você construiu, e analisa a estrutura completa da sua mentoria — apontando o que já está pronto para vender e o que ainda precisa de ajuste.</p>
+          <p>Esse é exatamente o tipo de serviço que a gente cobra na nossa empresa. Mas pra quem entra pelo treinamento, é gratuito.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Garantia -->
+    <section class="section">
+      <div class="container container--narrow section--center">
+        <span class="eyebrow">Risco zero</span>
+        <h2>Sua decisão é protegida</h2>
+        <div class="guarantee">
+          <div class="guarantee__badge"><span><b>7</b>DIAS</span></div>
+          <div>
+            <p>Eu sei que você já pode ter investido em cursos que prometiam muito e entregaram pouco. Por isso, o risco é todo meu. Você terá 7 dias completos para acessar a Metodologia Única. Se dentro desse período você perceber que não é para você, ou que não sente clareza para estruturar sua mentoria, basta solicitar o reembolso.</p>
+            <p>Simples assim. Sem justificativa longa. Sem constrangimento. Minha garantia é um reflexo da minha confiança no método.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Autora -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section--center">
+          <span class="eyebrow">Quem conduz</span>
+          <h2>Quem está por trás da <span class="hl">Metodologia Única</span></h2>
+        </div>
+        <div class="author">
+          <div class="author__photo">Foto da criadora</div>
+          <div>
+            <p>Mãe, esposa, empresária e especialista em vendas de alto ticket, já tive mais de 20 mil alunas ao redor do mundo e mais de 500 mentoradas. Uma viciada em vender e crescer negócios com propósito.</p>
+            <p>Eu sei exatamente como é saber muito e não conseguir organizar isso em algo claro. Eu já preparei encontros em cima da hora, já saí de mentorias sentindo que poderia ter sido melhor, já tive dificuldade de explicar o que eu fazia.</p>
+            <p>Até que eu entendi: o problema não era falta de conhecimento. Era falta de método. Quando eu organizei o que já sabia em uma metodologia clara, tudo mudou — a forma como eu conduzia, como eu vendia, como as alunas percebiam o valor.</p>
+            <p>A Metodologia Única nasceu desse processo. Não é teoria. É o mesmo caminho que eu percorri e que já ajudou mais de 500 mentoras a estruturar suas mentorias com clareza e segurança.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Urgência + CTA final -->
+    <section class="section section--center">
+      <div class="container container--narrow">
+        <span class="eyebrow">A hora é agora</span>
+        <h2>A única coisa que muda se você não decidir agora é o <span class="hl">tempo que você perde</span></h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">Cada semana que você adia essa decisão é:</p>
+        <div class="urgency-list">
+          <div class="urgency-item"><span class="ic" style="color:#22c55e;font-weight:700;">→</span> Mais uma semana improvisando encontros e saindo insatisfeita.</div>
+          <div class="urgency-item"><span class="ic" style="color:#22c55e;font-weight:700;">→</span> Mais uma semana sem conseguir explicar o que você faz de forma simples.</div>
+          <div class="urgency-item"><span class="ic" style="color:#22c55e;font-weight:700;">→</span> Mais uma semana perdendo vendas por falta de clareza na oferta.</div>
+          <div class="urgency-item"><span class="ic" style="color:#22c55e;font-weight:700;">→</span> Mais uma semana sentindo que poderia estar mais à frente.</div>
+        </div>
+        <p class="closing">Você não precisa de mais tempo para pensar. Precisa de estrutura para agir. E a estrutura está aqui. Pronta. Esperando você começar. A decisão não é sobre R$ 199,90. É sobre continuar improvisando no amadorismo… ou finalmente estruturar algo profissional que você pode escalar com segurança.</p>
+        <a class="btn-cta" href="https://payfast.greenn.com.br/45497/offer/Gf3z44?ch_id=13726">Sim, quero começar agora</a>
+      </div>
+    </section>
+
+  </div>
+
   <script type="text/javascript">
     var s = document.createElement("script");
     s.src = "https://scripts.converteai.net/06de75fb-4e77-4d24-a891-be4f8f6aef70/players/6a57b7a8ec23e71658ed7c46/v4/player.js";
@@ -238,16 +735,20 @@
 
     (function () {
       var cta = document.getElementById("cta");
+      var offer = document.getElementById("offer");
       if (!cta) return;
       var revealed = false;
 
       function reveal() {
         if (revealed) return;
         revealed = true;
-        cta.classList.add("is-visible");
-        // força o reflow p/ a transição rodar
-        void cta.offsetWidth;
-        cta.classList.add("is-shown");
+        // revela o botão do vídeo E a página de oferta, juntos
+        [cta, offer].forEach(function (el) {
+          if (!el) return;
+          el.classList.add("is-visible");
+          void el.offsetWidth; // força o reflow p/ a transição rodar
+          el.classList.add("is-shown");
+        });
       }
 
       // Lê o tempo atual do vídeo a partir de qualquer fonte disponível.
