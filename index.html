@@ -180,8 +180,6 @@
       font-weight: 700;
       padding: 1em 1.25em;
       border-radius: 999px;         /* totalmente arredondado (pill) */
-      box-shadow: 0 8px 24px rgba(22, 101, 52, 0.4);
-      animation: pulse 1.6s ease-in-out infinite;
     }
 
     /* desktop: um pouco menor que o vídeo */
@@ -232,9 +230,10 @@
     .offer h2 {
       font-weight: 700;
       font-size: clamp(1.6rem, 4.5vw, 2.4rem);
-      line-height: 1.15;
+      line-height: 1.2;
       letter-spacing: -0.01em;
       margin-bottom: 0.55em;
+      text-wrap: balance;   /* distribui o texto em linhas equilibradas */
     }
     .offer h2 .hl { color: inherit; }
     .offer .lead {
@@ -259,27 +258,28 @@
       line-height: 1.3;
       padding: 1em 2em;
       border-radius: 999px;
-      box-shadow: 0 10px 26px rgba(22, 101, 52, 0.28);
-      animation: pulse 1.6s ease-in-out infinite;
       max-width: 100%;
     }
 
     /* ---- Seção: O que você vai aprender (checklist) ---- */
     .learn-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;   /* último item sozinho fica centralizado */
       gap: 1em;
       margin-top: 2.2em;
       text-align: left;
     }
     .check-item {
+      flex: 0 1 calc((100% - 2em) / 3);  /* 3 por linha (gap 1em => 2 vãos) */
+      min-height: 132px;                  /* cards mais altos */
       display: flex;
-      align-items: flex-start;
+      align-items: center;                /* conteúdo centralizado na vertical */
       gap: 0.75em;
       background: #ffffff;
       border: 1px solid #e6e8eb;
       border-radius: 14px;
-      padding: 1em 1.1em;
+      padding: 1.25em 1.3em;
       font-size: 1rem;
       line-height: 1.45;
       color: #1f2937;
@@ -294,6 +294,20 @@
       color: #ffffff;
       display: grid;
       place-items: center;
+    }
+    .check-item .ic .i { width: 14px; height: 14px; }
+
+    /* Ícones SVG (traço, estilo moderno) */
+    .offer .i {
+      display: inline-block;
+      width: 1.05em;
+      height: 1.05em;
+      vertical-align: -0.15em;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
     /* ---- Seção: Depoimentos ---- */
@@ -344,15 +358,17 @@
       color: #166534; background: #f0fdf4; border: 1px solid #bbf7d0;
       padding: 0.35em 0.8em; border-radius: 999px;
     }
-    .module__mod { font-weight: 600; font-size: 0.85rem; color: #16a34a; }
+    .module__mod { display: inline-flex; align-items: center; gap: 0.4em; font-weight: 600; font-size: 0.85rem; color: #16a34a; }
     .module h3 { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.55em; line-height: 1.25; }
     .module p { color: #475569; line-height: 1.65; margin-bottom: 0.9em; }
     .module p:last-of-type { margin-bottom: 1.1em; }
     .result {
+      display: flex; gap: 0.65em; align-items: flex-start;
       background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;
       padding: 0.9em 1.1em; color: #166534; line-height: 1.55; font-weight: 500;
     }
     .result strong { font-weight: 700; }
+    .result .i { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 1px; }
 
     /* ---- Seção: Bônus / ferramentas ---- */
     .bonus-grid {
@@ -408,13 +424,10 @@
     /* ---- Seção: Garantia ---- */
     .guarantee { display: flex; gap: 1.6em; align-items: flex-start; margin-top: 2em; text-align: left; }
     .guarantee__badge {
-      flex: 0 0 auto; width: 104px; height: 104px; border-radius: 50%;
-      background: linear-gradient(180deg, #166534, #22c55e); color: #fff;
-      display: grid; place-items: center; text-align: center; line-height: 1.1;
-      font-weight: 700; box-shadow: 0 10px 26px rgba(22, 101, 52, 0.28);
+      flex: 0 0 auto; width: 120px; line-height: 0;
+      filter: drop-shadow(0 12px 22px rgba(74, 47, 28, 0.28));
     }
-    .guarantee__badge b { display: block; font-size: 1.7rem; }
-    .guarantee__badge span { font-size: 0.72rem; letter-spacing: 0.04em; }
+    .guarantee__badge svg { display: block; width: 100%; height: auto; }
     .guarantee p { color: #475569; line-height: 1.65; margin-top: 0.7em; }
 
     /* ---- Seção: Autora ---- */
@@ -444,7 +457,8 @@
       .author__photo { max-width: 320px; }
     }
     @media (max-width: 620px) {
-      .learn-grid { grid-template-columns: 1fr; }
+      .check-item { flex-basis: 100%; min-height: 0; }  /* mobile: fila única vertical */
+      .offer h2 { font-size: 1.45rem; }                 /* títulos mais compactos (menos linhas) */
       .guarantee { flex-direction: column; align-items: center; text-align: center; }
       .value-row { flex-wrap: wrap; }
     }
@@ -484,18 +498,27 @@
        ============================================================ -->
   <div class="offer" id="offer">
 
+    <!-- Sprite de ícones SVG (traço, estilo moderno) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 12v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8"/><path d="M2 8.5h20V12H2z"/><path d="M12 8.5V21"/><path d="M12 8.5C12 8.5 12 3 8.5 3S5 8.5 8.5 8.5 12 8.5 12 8.5Z"/><path d="M12 8.5C12 8.5 12 3 15.5 3S19 8.5 15.5 8.5 12 8.5 12 8.5Z"/></symbol>
+      <symbol id="i-module" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></symbol>
+    </svg>
+
+
     <!-- O que você vai aprender -->
     <section class="section section--center">
       <div class="container container--narrow">
         <h2>O que você vai <span class="hl">aprender</span> nesse treinamento</h2>
         <div class="learn-grid">
-          <div class="check-item"><span class="ic">✓</span> Como estruturar a sua mentoria do início ao fim.</div>
-          <div class="check-item"><span class="ic">✓</span> Como estruturar sua mentoria fazendo que ela valha 10x mais.</div>
-          <div class="check-item"><span class="ic">✓</span> Como estruturar sua mentoria para aguentar escala no perpétuo.</div>
-          <div class="check-item"><span class="ic">✓</span> Como criar uma metodologia única que se diferencia dentro do seu mercado.</div>
-          <div class="check-item"><span class="ic">✓</span> Como organizar a entrega, formatos e pilares.</div>
-          <div class="check-item"><span class="ic">✓</span> Como explicar o que você vende de um jeito único e sexy.</div>
-          <div class="check-item"><span class="ic">✓</span> Como dar seus próprios nomes e significados.</div>
+          <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como estruturar a sua mentoria do início ao fim.</div>
+          <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como estruturar sua mentoria fazendo que ela valha 10x mais.</div>
+          <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como estruturar sua mentoria para aguentar escala no perpétuo.</div>
+          <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como criar uma metodologia única que se diferencia dentro do seu mercado.</div>
+          <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como organizar a entrega, formatos e pilares.</div>
+          <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como explicar o que você vende de um jeito único e sexy.</div>
+          <div class="check-item"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span> Como dar seus próprios nomes e significados.</div>
         </div>
       </div>
     </section>
@@ -544,45 +567,45 @@
           <article class="module">
             <div class="module__head">
               <span class="module__week">SEMANA 1</span>
-              <span class="module__mod">🔹 MÓDULO 1</span>
+              <span class="module__mod"><svg class="i"><use href="#i-module"/></svg>MÓDULO 1</span>
             </div>
             <h3>Clareza do que você realmente ensina</h3>
             <p>Hoje está tudo solto na sua cabeça. Você sabe muito, mas não sabe por onde começar a organizar. Cada vez que tenta explicar o que faz, sai diferente. Cada encontro parece começar do zero.</p>
             <p>Neste módulo, você identifica o núcleo real da sua transformação. Separa o que é essencial do que é excesso. E ganha algo que a maioria das mentoras nunca teve: foco. Você deixa de tentar ensinar tudo e começa a estruturar com intenção.</p>
-            <div class="result">🎯 <strong>Resultado da Semana 1:</strong> Você sabe exatamente o que sustenta sua mentoria — e o que pode ser eliminado sem perder valor.</div>
+            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 1:</strong> Você sabe exatamente o que sustenta sua mentoria — e o que pode ser eliminado sem perder valor.</span></div>
           </article>
 
           <article class="module">
             <div class="module__head">
               <span class="module__week">SEMANA 2</span>
-              <span class="module__mod">🔹 MÓDULO 2</span>
+              <span class="module__mod"><svg class="i"><use href="#i-module"/></svg>MÓDULO 2</span>
             </div>
             <h3>Arquitetura da sua metodologia única — do mapa à prática</h3>
             <p>Agora que você tem clareza do que ensina, é hora de dar forma a isso. Neste módulo, você transforma ideias dispersas em etapas claras e organiza tudo com lógica e identidade própria.</p>
             <p>Mas não para no desenho. Você já transforma essa metodologia em encontros reais. Sua mentoria sai do papel e ganha estrutura prática que pode ser aplicada em grupo — estruturada, replicável e conduzível com segurança.</p>
-            <div class="result">🎯 <strong>Resultado da Semana 2:</strong> Sua metodologia está desenhada E seus encontros estão estruturados — prontos para serem aplicados com clareza e segurança.</div>
+            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 2:</strong> Sua metodologia está desenhada E seus encontros estão estruturados — prontos para serem aplicados com clareza e segurança.</span></div>
           </article>
 
           <article class="module">
             <div class="module__head">
               <span class="module__week">SEMANA 3</span>
-              <span class="module__mod">🔹 MÓDULO 3</span>
+              <span class="module__mod"><svg class="i"><use href="#i-module"/></svg>MÓDULO 3</span>
             </div>
             <h3>Organização para escala (sem sobrecarga)</h3>
             <p>A maioria das mentoras que cresce, se afoga. Porque escalar sem organização é multiplicar o caos. Mais alunas, mais demandas, mais mensagens, mais cobranças — e a mesma você tentando segurar tudo.</p>
             <p>Neste módulo, você define limites, organiza demandas e estrutura sua mentoria para funcionar em grupo sem que tudo dependa exclusivamente de você. Você aprende a crescer sem trabalhar mais horas.</p>
-            <div class="result">🎯 <strong>Resultado da Semana 3:</strong> Você sente segurança para escalar — porque a base sustenta o crescimento sem depender só da sua energia.</div>
+            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 3:</strong> Você sente segurança para escalar — porque a base sustenta o crescimento sem depender só da sua energia.</span></div>
           </article>
 
           <article class="module">
             <div class="module__head">
               <span class="module__week">SEMANA 4</span>
-              <span class="module__mod">🔹 MÓDULO 4</span>
+              <span class="module__mod"><svg class="i"><use href="#i-module"/></svg>MÓDULO 4</span>
             </div>
             <h3>Sua metodologia como oferta de alto ticket</h3>
             <p>Uma mentoria que ninguém entende é uma mentoria que ninguém compra. Não importa quão boa ela seja por dentro — se na hora de apresentar você trava, enrola ou não consegue explicar com clareza, a venda não acontece.</p>
             <p>Neste módulo, você organiza promessa, público e transformação com clareza. Sua mentoria deixa de ser 'difícil de explicar' e se torna uma oferta que comunica valor em poucas palavras — uma oferta que você pode cobrar tranquilamente de 2 a 10 mil reais.</p>
-            <div class="result">🎯 <strong>Resultado da Semana 4:</strong> Você sabe exatamente como apresentar, explicar e posicionar sua mentoria como uma oferta de alto valor.</div>
+            <div class="result"><svg class="i"><use href="#i-target"/></svg><span><strong>Resultado da Semana 4:</strong> Você sabe exatamente como apresentar, explicar e posicionar sua mentoria como uma oferta de alto valor.</span></div>
           </article>
         </div>
       </div>
@@ -596,27 +619,27 @@
 
         <div class="bonus-grid">
           <div class="bonus">
-            <span class="bonus__tag">🎁 BÔNUS</span>
+            <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Onboarding de Alunas</h3>
             <p>Fechar a venda é só o começo — o problema é o que vem depois. Aqui você recebe um processo pronto pra saber exatamente o que fazer quando uma nova cliente entrar: como acolher e preparar ela pro acompanhamento. Quando o começo é organizado, a aluna entra confiante — e isso muda o resultado lá no fim.</p>
           </div>
           <div class="bonus">
-            <span class="bonus__tag">🎁 BÔNUS</span>
+            <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Manual da Aluna</h3>
             <p>Mentoria sem regras claras vira uma enxurrada de dúvidas repetidas: pode remarcar? Onde acessa? Como funciona? Aqui você recebe um documento completo com as regras, formatos e acessos da sua mentoria, pronto pra adaptar. Elimina as dúvidas repetitivas e profissionaliza sua entrega desde o primeiro dia.</p>
           </div>
           <div class="bonus">
-            <span class="bonus__tag">🎁 BÔNUS</span>
+            <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Modelo de Contrato</h3>
             <p>Muitas mentoras conduzem programas de milhares de reais sem nenhum contrato — e só percebem o problema quando aparece um desentendimento. Aqui você recebe um contrato de mentoria pronto pra adaptar ao seu contexto. Protege você, protege sua aluna, e deixa tudo combinado antes de começar.</p>
           </div>
           <div class="bonus">
-            <span class="bonus__tag">🎁 BÔNUS</span>
+            <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Template de Formulário de Aplicação</h3>
             <p>Conversar com todo mundo que demonstra interesse é o jeito mais rápido de gastar sua energia com quem nunca vai comprar. Aqui você recebe um formulário de aplicação pronto pra adaptar ao seu nicho: as pessoas aplicam, você filtra quem é qualificado antes da conversa. Menos conversa perdida.</p>
           </div>
           <div class="bonus">
-            <span class="bonus__tag">🎁 BÔNUS</span>
+            <span class="bonus__tag"><svg class="i"><use href="#i-gift"/></svg>BÔNUS</span>
             <h3>Workshop: Apresentação de Mentoria de Alta Conversão</h3>
             <p>Você pode ter a mentoria mais bem estruturada do mundo e ainda travar na hora de apresentar — e é aí que a maioria perde a venda. Aqui você recebe o script completo que eu uso, da condução ao fechamento: o que falar em cada momento e como conduzir pra que a venda aconteça naturalmente.</p>
           </div>
@@ -646,7 +669,7 @@
           <div class="small">Tudo isso por apenas</div>
           <div class="big">12x de R$ 20,55</div>
           <div class="cash">ou R$ 199,90 à vista</div>
-          <a class="btn-cta" href="https://payfast.greenn.com.br/45497/offer/Gf3z44?ch_id=13726">Quero garantir minha vaga e estruturar minha mentoria com segurança</a>
+          <a class="btn-cta" href="https://payfast.greenn.com.br/45497/offer/Gf3z44?ch_id=13726">Quero garantir minha vaga</a>
         </div>
       </div>
     </section>
@@ -667,7 +690,7 @@
       <div class="container container--narrow section--center">
         <h2>Sua decisão é protegida</h2>
         <div class="guarantee">
-          <div class="guarantee__badge"><span><b>7</b>DIAS</span></div>
+          <div class="guarantee__badge"><svg viewBox="0 0 626 665" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="selo-brown" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3f2817"/><stop offset="0.55" stop-color="#6b4a2b"/><stop offset="1" stop-color="#8e6b48"/></linearGradient></defs><path d="M291.588 584.428C282.672 575.377 272.174 562.233 258.626 562.69C236.258 563.443 218.314 586.375 196.303 566.041C186.46 556.946 184.64 534.917 173.063 526.221C155.2 512.802 131.958 527.92 114.885 511.656C97.5377 495.131 113.319 470.38 99.7142 452.999C86.9801 436.732 51.0549 439.052 51.6779 409.841C52.1647 387.019 76.4102 370.144 53.6584 346.46C43.0126 335.378 31.9177 328.26 32.5296 311.843C33.4023 288.428 60.9463 282.759 63.2438 260.772C65.097 243.034 46.8298 227.018 52.8615 208.372C54.32 203.863 56.5229 199.051 60.1799 196.02C79.6591 179.872 104.264 186.447 105.788 153.077C106.433 138.96 103.704 125.047 114.908 114.114C131.236 98.1815 156.732 112.801 172.78 99.8438C189.49 86.3542 186.214 50.6701 217.053 51.7748C239.348 52.5734 255.648 75.6923 278.722 54.3255C289.863 44.0082 297.289 32.0151 313.684 32.4531C337.827 33.098 342.968 60.9318 365.472 63.1965C383.382 64.9981 399.323 46.5764 418.439 53.1163C422.986 54.6718 427.714 57.1651 430.73 60.8968C445.286 78.9067 440.774 103.797 470.799 105.779C486.29 106.802 501.16 103.008 512.846 115.953C527.508 132.193 513.337 157.788 526.438 173.19C540.227 189.404 576.394 187.006 574.42 218.087C573.119 238.563 551.236 255.516 570.86 277.759C581.428 289.734 594.851 297.141 593.733 314.93C592.345 337.05 564.949 344.046 562.922 365.213C561.158 383.635 579.298 397.974 573.296 417.875C571.849 422.811 569.015 427.226 565.122 430.588C550.181 443.622 522.896 440.769 520.658 469.195C519.346 485.871 523.809 501.228 509.722 513.025C494.208 526.968 468.196 513.343 452.738 526.577C438.414 538.844 440.594 563.029 421.555 571.822C396.245 583.508 374.381 548.492 349.818 569.504C344.439 574.108 339.582 580.007 334.335 584.304C333.336 584.433 330.614 584.627 329.275 584.396C321.05 582.96 320.567 540.054 307.945 557.301C305.212 561.039 303.436 579.319 298.032 583.455C295.961 585.041 293.913 584.579 291.588 584.428Z" fill="url(#selo-brown)"/><path d="M291.586 584.428C293.912 584.578 295.959 585.041 298.03 583.454C303.435 579.319 305.211 561.039 307.943 557.301C320.565 540.054 321.049 582.96 329.274 584.395C330.613 584.627 333.334 584.433 334.333 584.304C339.53 585.261 352.794 584.67 358.06 583.142C359.15 584.772 360.955 587.004 361.11 589.021C361.496 594.033 340.476 606.279 336.231 610.656L335.809 611.097C337.919 617.61 347.989 641.515 341.398 644.877C335.585 645.129 318.744 631.491 313.805 627.344C307.575 630.609 286.789 648.394 282.529 643.828C280.419 637.718 287.772 618.288 290.013 611.097C284.014 605.214 262.302 593.872 265.471 585.632C269.414 582.083 283.822 585.175 291.086 584.476L291.586 584.428Z" fill="#F6F5F3"/><path d="M413.102 577.345C422.488 579.529 420.238 596.701 425.291 601.207C428.471 604.042 446.484 600.444 451.144 603.827C454.823 611.2 435.451 617.003 433.111 622.693C431.083 627.624 442.734 646.324 437.539 649.287C431.904 649.814 419.539 639.526 414.939 635.767C409.739 638.472 395.049 651.395 390.755 648.432C388.726 643.989 394.68 628.791 396.359 623.601C386.318 611.99 357.263 601.218 396.005 602.326C398.296 602.391 400.644 602.358 402.943 602.374C406.22 594.829 408.72 582.906 413.102 577.345Z" fill="#F6F5F3"/><path d="M209.908 577.765C216.17 578.599 216.796 583.896 218.407 589.14C219.742 593.49 221.075 597.766 222.502 602.084C230.321 602.638 238.425 601.778 246.21 602.73C248.231 602.977 248.777 603.687 249.255 605.446C247.888 611.491 234.156 618.014 229.385 623.193C231.149 629.141 236.921 642.764 235.563 647.873C231.532 652.401 217.043 639.526 213.325 636.697L212.105 635.961C206.847 636.525 194.846 650.917 188.937 649.357C183.297 644.711 194.702 627.861 193.039 623.365C191.216 618.439 175.863 611.948 173.869 605.774C174.875 600.337 195.418 602.429 200.327 602.542C203.878 594.297 205.194 585.128 209.908 577.765Z" fill="#F6F5F3"/><path d="M133.014 595.442C137.994 596.636 141.979 610.947 142.2 615.384C146.336 615.163 161.381 614.437 163.771 617.271C163.831 622.154 148.353 630.254 148.405 631.899C148.569 637.051 153.964 644.812 153.082 651.206C152.182 652.653 152.724 652.26 151.052 652.675C146.246 651.793 138.748 645.199 135.058 641.929C130.128 643.037 118.355 655.944 114.399 651.271C114.238 648.996 118.914 635.433 120.005 631.942C116.473 628.721 106.631 623.176 105.204 618.148C105.019 617.497 105.735 616.938 106.206 616.378C110.458 614.405 120.422 615.26 125.346 615.507C127.8 608.553 129.172 601.852 133.014 595.442Z" fill="#F6F5F3"/><path d="M490.493 595.469C496.089 596.76 498.925 610.028 500.496 615.26C504.802 615.233 520.429 613.819 521.034 618.74C519.334 622.564 509.685 628.582 505.736 632.217C507.439 635.966 511.92 647.023 510.777 650.895C507.124 654.719 496.417 645.028 492.906 642.403C488.261 641.521 478.779 654.697 473.24 651.772C471.598 648.276 476.491 636.536 477.709 631.938C474.402 628.549 460.44 620.73 463.7 616.115C467.264 614.265 479.079 615.158 483.188 615.852C485.381 608.624 487.11 602.256 490.493 595.469Z" fill="#F6F5F3"/><path d="M193.127 159.413C208.183 159.972 227.639 159.385 242.96 159.389L357.786 159.397C378.314 159.398 401.268 158.904 421.646 159.636C421.689 166.867 422.68 199.757 420.62 204.243C409.545 228.365 393.645 261.006 382.409 284.394L291.585 474.149L290.883 475.291C288.768 475.701 274.972 475.518 271.741 475.515L226.135 475.417C230.845 466.241 235.273 456.312 239.85 446.991L286.669 351.119L331.588 259.236C339.303 243.365 347.422 228.072 354.532 211.857C337.231 212.359 317.507 211.911 299.929 211.916L193.188 211.948L193.127 159.413Z" fill="#F6F5F3"/></svg></div>
           <div>
             <p>Eu sei que você já pode ter investido em cursos que prometiam muito e entregaram pouco. Por isso, o risco é todo meu. Você terá 7 dias completos para acessar a Metodologia Única. Se dentro desse período você perceber que não é para você, ou que não sente clareza para estruturar sua mentoria, basta solicitar o reembolso.</p>
             <p>Simples assim. Sem justificativa longa. Sem constrangimento. Minha garantia é um reflexo da minha confiança no método.</p>
