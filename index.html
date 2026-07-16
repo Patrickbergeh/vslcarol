@@ -233,11 +233,12 @@
 
   <script type="text/javascript">
     /* ====== CONFIG ====== */
-    var REVEAL_AT_SECONDS = 960; // tempo em segundos p/ o botão aparecer (960 = 16min)
+    var REVEAL_AT_SECONDS = 600; // tempo em segundos p/ o botão aparecer (600 = 10min)
     /* ==================== */
 
     (function () {
       var cta = document.getElementById("cta");
+      if (!cta) return;
       var revealed = false;
 
       function reveal() {
@@ -249,42 +250,66 @@
         cta.classList.add("is-shown");
       }
 
-      // 1) Caminho oficial: escuta o timeupdate do SmartPlayer da vturb
-      function hookPlayer() {
+      // Lê o tempo atual do vídeo a partir de qualquer fonte disponível.
+      // Não depende de nenhum evento: se ao menos uma fonte responder, funciona.
+      function currentTime() {
+        // 1) instância oficial do SmartPlayer da vturb
         try {
           var sp = window.smartplayer;
           var inst = sp && sp.instances && sp.instances[0];
-          if (inst && typeof inst.on === "function") {
-            inst.on("timeupdate", function () {
-              var t = (inst.video && inst.video.currentTime) || inst.currentTime || 0;
-              if (t >= REVEAL_AT_SECONDS) reveal();
-            });
-            return true;
+          if (inst) {
+            var t = (inst.video && inst.video.currentTime) || inst.currentTime;
+            if (typeof t === "number" && t > 0) return t;
           }
         } catch (e) {}
-        return false;
+        // 2) qualquer elemento <video> na página
+        try {
+          var v = document.querySelector("vturb-smartplayer video") ||
+                  document.querySelector("video");
+          if (v && typeof v.currentTime === "number") return v.currentTime;
+        } catch (e) {}
+        return 0;
       }
 
-      // 2) Fallback: procura o <video> na página e lê o currentTime direto
-      function hookVideoEl() {
-        var v = document.querySelector("vturb-smartplayer video") ||
-                document.querySelector("video");
-        if (v) {
-          v.addEventListener("timeupdate", function () {
-            if (v.currentTime >= REVEAL_AT_SECONDS) reveal();
-          });
-          return true;
+      // Loop-mestre: verifica o tempo por conta própria a cada 500ms e não
+      // desiste enquanto não revelar. Isso garante que players que demoram a
+      // carregar (mobile/3G) ainda liberem o botão, sem depender de eventos.
+      var poll = setInterval(function () {
+        if (currentTime() >= REVEAL_AT_SECONDS) {
+          reveal();
+          clearInterval(poll);
         }
-        return false;
-      }
-
-      // tenta conectar até o player carregar
-      var tries = 0;
-      var timer = setInterval(function () {
-        tries++;
-        var ok = hookPlayer() || hookVideoEl();
-        if (ok || tries > 120) clearInterval(timer); // desiste após ~60s
       }, 500);
+
+      // Bônus (não é obrigatório p/ funcionar): também escuta o timeupdate,
+      // caso ele dispare, para revelar no mesmo instante. Reanexa se o player
+      // recriar o <video>, e ignora falhas silenciosamente.
+      function attachTimeupdate() {
+        try {
+          var sp = window.smartplayer;
+          var inst = sp && sp.instances && sp.instances[0];
+          if (inst && typeof inst.on === "function" && !inst.__ctaHooked) {
+            inst.__ctaHooked = true;
+            inst.on("timeupdate", function () {
+              if (currentTime() >= REVEAL_AT_SECONDS) reveal();
+            });
+          }
+        } catch (e) {}
+        try {
+          var v = document.querySelector("vturb-smartplayer video") ||
+                  document.querySelector("video");
+          if (v && !v.__ctaHooked) {
+            v.__ctaHooked = true;
+            v.addEventListener("timeupdate", function () {
+              if (v.currentTime >= REVEAL_AT_SECONDS) reveal();
+            });
+          }
+        } catch (e) {}
+      }
+      var attach = setInterval(function () {
+        if (revealed) { clearInterval(attach); return; }
+        attachTimeupdate();
+      }, 1000);
     })();
 
     /* ====== Badge "assistindo ao vivo" ====== */
